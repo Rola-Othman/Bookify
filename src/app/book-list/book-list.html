@@ -1,0 +1,83 @@
+<!-- <div class="container">
+    <div class="fw-bold display-4 my-4">
+       <h1> <i class="bi bi-houses-fill"></i> Explore Books</h1>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @for (item of bookList(); track item.title) {
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img src="https://www.i2clipart.com/cliparts/e/f/9/b/clipart-book-256x256-ef9b.png"
+                    class="card-img-top p-3" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <p class="card-text">{{ item.description }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ item.category }}</li>
+                    <li class="list-group-item">{{ item.author }}</li>
+                </ul>
+                <div class="card-body">
+                    <a href="#" class="card-link">Read More</a>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div> -->
+
+<div class="content">
+    <div class="container p-5">
+
+        <div class="row">
+
+            <div class="wrapper-div">
+                @for(cat of bookCategoryList(); track cat.id){
+                <!-- <div class="col-xs-2 col-sm-2">
+                <button class="btn btn-dark btn-explore">Explore</button>
+            </div> -->
+                <div class="col-xs-2 col-sm-2 item">
+                <button class="btn btn-dark">{{ cat.name }}</button>
+            </div>
+                }
+            </div>
+        </div>
+
+
+        <div class="fw-bold display-4 my-4">
+            <h1> <i class="bi bi-houses-fill"></i> Explore Books</h1>
+        </div>
+        <div class="row">
+
+            @for (item of bookInfoList(); track item.bookId) {
+            <div class="col-xs-12 col-sm-4">
+                <div class="card">
+                    <a class="img-card" href="#">
+                        <img src="https://i.pinimg.com/1200x/46/03/64/4603642036c37f168bc7e07e99e15441.jpg" />
+                    </a>
+                    <div class="card-content">
+                        <p class="card-title">
+                            <a href="#">
+                                {{ item.bookName }}
+                            </a>
+                        </p>
+                        <p>
+                            <span class="badge rounded-pill subtitle-card">{{ item.authorName }}</span>
+                        </p>
+                        <p class="">
+                            {{ item.description }}
+                        </p>
+                    </div>
+                    <div class="card-read-more p-3 fw-bold display-7">
+                        @for(cat of item.categories; track cat.name){
+                        <span appCategoryColorBadge [color]="cat.color" class="badge rounded-pill">{{ cat.name }}</span>
+                        }
+                    </div>
+                    <div class="card-read-more p-3 fw-bold display-7">
+                        <button class="btn btn-dark btn-explore">Explore</button>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
