@@ -4,13 +4,6 @@ import { CategoryColorBadgeDirective } from '../../directives/category-color-bad
 import { Router, RouterLink } from '@angular/router';
 import { TextTruncatePipe } from '../../pipes/text-truncate-pipe';
 
-/**
- *   changeDetection: ChangeDetectionStrategy.OnPush
- * * هي بمعنى لا تحدثني الا اذا حصل تغيير في حاجة داخل هذا الكمبوننت
- *  وده بيساعد في تحسين الاداء لان الاندولج انجن مش هيبقى بيشيك على كل حاجة في الكمبوننت
- *  وبيشيك بس لما يحصل تغيير في حاجة داخل الكمبوننت زي تغير في قيمة سيجنال مثلا
- */
-
 @Component({
   selector: 'app-app-book-card',
   imports: [CategoryColorBadgeDirective, RouterLink],
@@ -25,13 +18,6 @@ export class AppBookCard {
   isExploreBtn = input.required<boolean>();
   private textTruncatePipe = inject(TextTruncatePipe);
   private router = inject(Router);
-
-  // @if(!isExploreBtn()){
-  //           <button (click)="backToHome()" class="btn btn-dark btn-explore">Back</button>
-  //           }
-  //           @else{
-  //           <button (click)="goToBookDetails(item().bookId)" class="btn btn-dark btn-explore">Explore</button>
-  //           }
 
   buttonHtml= computed(() => {
     return this.isExploreBtn()
