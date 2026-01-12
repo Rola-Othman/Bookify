@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { BookDetails } from './components/book-details/book-details';
 
 export const routes: Routes = [
     {
@@ -28,6 +29,13 @@ export const routes: Routes = [
         loadComponent() {
             return import('./book-list/book-list').then(t => t.BookList);
         }
-    }
+    },
+    {
+        path: "book/:id",
+        pathMatch: 'full',
+        loadComponent() {
+            return import('./components/book-details/book-details').then(t => t.BookDetails);
+        }
+    },
 
 ];

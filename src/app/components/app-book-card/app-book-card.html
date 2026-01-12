@@ -1,0 +1,33 @@
+@let book = item();
+@let isExplore = isExploreBtn();
+<div class="">
+    <div class="card">
+        <a class="img-card" href="#">
+            <img src="https://i.pinimg.com/1200x/46/03/64/4603642036c37f168bc7e07e99e15441.jpg" />
+        </a>
+        <div class="card-content">
+            <p class="card-title">
+                <a href="#">
+                    {{ book.bookName }}
+                </a>
+            </p>
+            <p>
+                <span class="badge rounded-pill subtitle-card">{{ book.authorName }}</span>
+            </p>
+             <p class="">
+            {{ description() }}
+            </p>
+        </div>
+        <div class="card-read-more p-3 fw-bold display-7">
+            @for(cat of book.categories; track cat.id){
+            <span appCategoryColorBadge [color]="cat.color" class="badge rounded-pill m-1">{{ cat.name }}</span>
+            }
+        </div>
+        <div class="card-read-more p-3 fw-bold display-7">
+            <button class="btn btn-dark btn-explore" (click)="isExplore ? goToBookDetails(book.bookId) : backToHome()">
+                {{ isExplore ? 'Explore' : 'Back' }}
+            </button>
+
+        </div>
+    </div>
+</div>

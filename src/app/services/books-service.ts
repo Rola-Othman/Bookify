@@ -142,11 +142,12 @@ export class BooksService {
   }
   book_infos = signal<BookInfo[]>([]);
 
+  //** Method to retrieve book information with author names and category details
   retriveBookInfo(): BookInfo[] {
     const myBookInfo = this.book_list().map(book => {
       const author_name = this.author_list().find(author => author.id === book.author_id)?.name || 'Unknown Author';
       const categoriesList = this.category_list().filter(category => book.category_ids.includes(category.id))
-        .map(cat => ({ name: cat.name, color: cat.color }));
+        .map(cat => ({ id: cat.id, name: cat.name, color: cat.color }));
 
       return {
         bookId: book.id,
@@ -156,13 +157,41 @@ export class BooksService {
         categories: categoriesList,
       };
     });
+
     return myBookInfo;
   }
 
+getBookInfoById(id: number): BookInfo {
+  const book = this.book_list().find(b => b.id === id);
+
+  if (!book) {
+    throw new Error('Book not found');
+  }
+
+  const authorName =
+    this.author_list().find(a => a.id === book.author_id)?.name ?? 'Unknown Author';
+
+  const categoryIds = new Set(book.category_ids);
+
+  const categories = this.category_list()
+    .filter(c => categoryIds.has(c.id))
+    .map(c => ({
+      id: c.id,
+      name: c.name,
+      color: c.color
+    }));
+
+  return {
+    bookId: book.id,
+    bookName: book.name,
+    description: book.description,
+    authorName,
+    categories
+  };
+}
+
+  //** */ Method to retrieve the list of categories
   retriveCategoryInfo(): Category[] {
     return this.category_list();
   }
 }
-//ng generate directive category-color-bagde
-
-// ng generate class models/authors --type=model

@@ -1,0 +1,31 @@
+<!-- <div class="col-xl-6 m-5">
+    <div class="card">
+        <a class="img-card" href="#">
+            <img src="https://i.pinimg.com/1200x/46/03/64/4603642036c37f168bc7e07e99e15441.jpg" />
+        </a>
+        <div class="card-content">
+            <p class="card-title">
+                <a href="#">
+                   {{ bookInfo()?.bookName }}
+                </a>
+            </p>
+            <p>
+                <span class="badge rounded-pill subtitle-card">{{ bookInfo()?.authorName }}</span>
+            </p>
+            <p class="">
+                {{ bookInfo()?.description }}
+            </p>
+        </div>
+        <div class="card-read-more p-3 fw-bold display-7">
+            @for(cat of bookInfo()?.categories; track cat.id){
+            <span appCategoryColorBadge [color]="cat.color" class="badge m-1 rounded-pill">{{ cat.name }}</span>
+           }
+        </div>
+        <div class="card-read-more p-3 fw-bold display-7">
+            <button (click)="backToHome()" class="btn btn-dark btn-explore">Back</button>
+        </div>
+    </div>
+</div> -->
+<div class="col-xl-6 m-5">
+    <app-app-book-card [item]="bookInfo()!" [isExploreBtn]="false"></app-app-book-card>
+</div>
